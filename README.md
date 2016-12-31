@@ -3,6 +3,7 @@ holiday-vaadin
 
 Template for a simple Vaadin application that only requires a Servlet 3.0 container to run.
 
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 Workflow
 ========

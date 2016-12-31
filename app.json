@@ -1,0 +1,7 @@
+{
+  "name": "holiday-vaadin",
+  "description": "Holiday Vaadin",
+  "repository": "https://github.com/miladhub/holiday-vaadin",
+  "logo": "https://node-js-sample.herokuapp.com/node.png",
+  "keywords": ["vaadin"]
+}
