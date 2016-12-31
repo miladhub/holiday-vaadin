@@ -1,18 +1,39 @@
-holiday-vaadin
+Holiday Planner with Vaadin
 ==============
 
-Template for a simple Vaadin application that only requires a Servlet 3.0 container to run.
+Simple holiday planner using [Vaadin](https://vaadin.com/).
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 Workflow
 ========
 
-To compile the entire project, run "mvn install".
+To compile the entire project, run
 
-To run the application, run "mvn jetty:run" and open http://localhost:8080/ .
+    mvn install
 
-To produce a deployable production mode WAR:
-- change productionMode to true in the servlet class configuration (nested in the UI class)
-- run "mvn clean package"
-- test the war file with "mvn jetty:run-war"
+To run the application, run
+
+    mvn jetty:run
+    
+or
+
+    java -jar target/dependency/webapp-runner.jar target/*.war
+    
+and open [http://localhost:8080/](http://localhost:8080/)
+
+This app can also be deployed in any Servlet 3.0-compliant container, including [Tomcat](http://tomcat.apache.org/).
+
+Use cases
+=========
+
+1) set actual hours/vacations at the beginning of a given month, hours/vacation gained per month
+--> look at hours/vacations in the future, until given date
+
+2) add hours off/vacations in a given month
+--> look at changed hours/vacations in the following months, until given date 
+-- prerequisite: actor has to know how much they added on the month (use case 1)
+
+3) remove hours off/vacations from a given month
+--> look at changed hours/vacations in the following months, until given date
+-- prerequisite: actor has to know how much they added on the month (use case 1)
