@@ -2,43 +2,60 @@ package org.miladhub.holidays;
 
 import javax.servlet.annotation.WebServlet;
 
-import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
+import com.vaadin.data.Property;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.TextField;
-import com.vaadin.ui.UI;
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.*;
 
-/**
- * This UI is the application entry point. A UI may either represent a browser window 
- * (or tab) or some part of a html page where a Vaadin application is embedded.
- * <p>
- * The UI is initialized using {@link #init(VaadinRequest)}. This method is intended to be 
- * overridden to add component to the user interface and initialize non-component functionality.
- */
-@Theme("mytheme")
 public class MyUI extends UI {
-
     @Override
     protected void init(VaadinRequest vaadinRequest) {
         final VerticalLayout layout = new VerticalLayout();
-        
+
         final TextField name = new TextField();
         name.setCaption("Type your name here:");
 
         Button button = new Button("Click Me");
-        button.addClickListener( e -> {
-            layout.addComponent(new Label("Thanks " + name.getValue() 
+        button.addClickListener(e -> {
+            layout.addComponent(new Label("Thanks " + name.getValue()
                     + ", it works!"));
         });
-        
-        layout.addComponents(name, button);
+
+        Table table = new Table();
+
+        table.addContainerProperty("Label", Label.class, null);
+        table.addContainerProperty("Comments", TextField.class, null);
+        table.addContainerProperty("Details", Button.class, null);
+
+        for (int i = 0; i < 100; i++) {
+            final int row = i;
+
+            Label label = new Label("Hello");
+
+            TextField comments = new TextField();
+            comments.addValueChangeListener((Property.ValueChangeListener) event -> {
+                Notification.show("Label on row " + row
+                        + " changed to " + event.getProperty().getValue());
+            });
+
+            Button showDetails = new Button("show details");
+            showDetails.setData(i);
+            showDetails.addClickListener((Button.ClickListener) event -> {
+                Integer iid = (Integer) event.getButton().getData();
+                Notification.show("Link " + iid + " clicked.");
+            });
+            showDetails.addStyleName("link");
+
+            table.addItem(new Object[]{label, comments, showDetails}, i);
+        }
+
+        table.setPageLength(3);
+
+        layout.addComponents(name, button, table);
         layout.setMargin(true);
         layout.setSpacing(true);
-        
+
         setContent(layout);
     }
 
