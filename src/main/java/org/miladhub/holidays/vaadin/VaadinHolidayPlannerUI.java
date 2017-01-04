@@ -1,17 +1,18 @@
-package org.miladhub.holidays;
+package org.miladhub.holidays.vaadin;
 
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.data.Property;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.*;
+import org.miladhub.holidays.*;
 
 import javax.servlet.annotation.WebServlet;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class VaadinHolidayPlanner extends UI {
+public class VaadinHolidayPlannerUI extends UI {
     private final HolidayContext context = new InMemoryHolidaySettings();
     private final HoursTaken hoursTaken = new InMemoryHoursTaken();
     private final Map<String, PlannedMonth> months = new LinkedHashMap<>();
@@ -166,8 +167,8 @@ public class VaadinHolidayPlanner extends UI {
         }
     }
 
-    @WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)
-    @VaadinServletConfiguration(ui = VaadinHolidayPlanner.class, productionMode = false)
-    public static class MyUIServlet extends VaadinServlet {
+    @WebServlet(urlPatterns = "/*", name = "VaadinHolidayPlannerUIServlet", asyncSupported = true)
+    @VaadinServletConfiguration(ui = VaadinHolidayPlannerUI.class, productionMode = false)
+    public static class VaadinHolidayPlannerUIServlet extends VaadinServlet {
     }
 }
