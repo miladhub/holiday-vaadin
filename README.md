@@ -27,13 +27,26 @@ This app can also be deployed in any Servlet 3.0-compliant container, including 
 Use cases
 =========
 
-1) set actual hours/vacations at the beginning of a given month, hours/vacation gained per month
---> look at hours/vacations in the future, until given date
+## Create plan
 
-2) add hours off/vacations in a given month
---> look at changed hours/vacations in the following months, until given date 
--- prerequisite: actor has to know how much they added on the month (use case 1)
+Pre-conditions: none
+Post-conditions: system keeps record of the plan
 
-3) remove hours off/vacations from a given month
---> look at changed hours/vacations in the following months, until given date
--- prerequisite: actor has to know how much they added on the month (use case 1)
+1. Actor sets hours/vacation gained per month
+
+2. Actor sets actual hours/vacations at the beginning of a given month
+
+3. Actor chooses an end date
+
+4. System shows hours/vacations in the future, until end date
+
+## Add or remove vacations
+
+Pre-conditions: the plan is available and the system is presenting it to the user
+Post-conditions: the plan is recorded along with the changes
+
+1. Actor adds or removes hours off/vacations from a given month
+
+2. System shows changed hours/vacations in the following months, until given date
+ 
+Outcome: the plan has changed with additional hours off/vacations for the given month
